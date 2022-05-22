@@ -1,8 +1,7 @@
 import tensorflow as tf
 import numpy as np
-base = 'XACDEFGHIKLMNPQRSTVWY'
-Protein = [a for a in base]
-Protein_dict = {x: y for y, x in enumerate(Protein)}
+from sklearn.metrics import accuracy_score
+
 def transform_encode(sequences):
     output = []
     for seq in sequences:
@@ -32,3 +31,23 @@ def model_predict(sequences):
     probability = (np.squeeze(predict, axis=-1))
     predict = np.int32(probability > 0.5)
     return predict
+
+if __name__ == '__main__':
+    base = 'XACDEFGHIKLMNPQRSTVWY'
+    Protein = [a for a in base]
+    Protein_dict = {x: y for y, x in enumerate(Protein)}
+
+    # Load data
+    test_seq_positive = np.load(r'./Dataset_preprocess/Test_seq_positive.npy')
+    test_seq_negative = np.load(r'./Dataset_preprocess/Test_seq_negative.npy')
+    test_label_positive = np.load(r'./Dataset_preprocess/Test_label_positive.npy')
+    test_label_negative = np.load(r'./Dataset_preprocess/Test_label_negative.npy')
+
+    test_seq = np.concatenate([test_seq_positive, test_seq_negative], axis=0)
+    test_label = np.concatenate([test_label_positive, test_label_negative], axis=0)
+
+    predict_outcome = model_predict(test_seq)
+
+    print('Predicted results of the test set:')
+    print('Accuracy: ', accuracy_score(test_label, predict_outcome))
+

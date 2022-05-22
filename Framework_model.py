@@ -98,9 +98,6 @@ class Capsule(Layer):
         base_config = super(Capsule, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))
 
-base = 'XACDEFGHIKLMNPQRSTVWY'
-Protein = [a for a in base]
-Protein_dict = {x: y for y, x in enumerate(Protein)}
 
 def transform_encode(sequences):
     output = []
@@ -146,3 +143,21 @@ def train_model(train_x,train_label):
               batch_size=8, epochs=100, validation_freq=1)
     #model.save('./model_save')
 
+
+if __name__ == '__main__':
+    base = 'XACDEFGHIKLMNPQRSTVWY'
+    Protein = [a for a in base]
+    Protein_dict = {x: y for y, x in enumerate(Protein)}
+
+    print('Loading data......')
+    train_seq_positive = np.load(r'./Dataset_preprocess/Train_seq_positive.npy')
+    train_seq_negative = np.load(r'./Dataset_preprocess/Train_seq_negative.npy')
+    train_label_positive = np.load(r'./Dataset_preprocess/Train_label_positive.npy')
+    train_label_negative = np.load(r'./Dataset_preprocess/Train_label_negative.npy')
+
+    train_seq = np.concatenate([train_seq_positive, train_seq_negative], axis=0)
+    train_label = np.concatenate([train_label_positive, train_label_negative], axis=0)
+
+    print('Model training......')
+    train_model(train_seq, train_label)
+    print('OK......')
