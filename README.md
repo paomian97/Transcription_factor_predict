@@ -16,13 +16,17 @@ This project provides the core code for the transcription factor prediction proj
 
 ## Guidance
 ### Predicting Test Set  
-*Step1:  
-run the Data_generate.py (Since the Dataset_preprocess folder already holds preprocessed data, this step can be skipped):   python Data_generate.py  
-*Step2:  
-run the Predict_model.py:  python Predict_model.py  
+* Step1:  
+run the Data_generate.py (Since the Dataset_preprocess folder already holds preprocessed data, this step can be skipped):  
+python Data_generate.py  
+* Step2:  
+run the Predict_model.py:  
+python Predict_model.py  
 
 ## Training the model
-*Step1:  
-run the Data_generate.py (Since the Dataset_preprocess folder already holds preprocessed data, this step can be skipped):   python Data_generate.py  
-*Step2:
-run the Framework_model.py (You can change the code as appropriate to meet your training requirements):  python Framework_model.py  
+* Step1:  
+run the Data_generate.py (Since the Dataset_preprocess folder already holds preprocessed data, this step can be skipped):  
+python Data_generate.py  
+* Step2:
+run the Framework_model.py (You can change the code as appropriate to meet your training requirements):  
+python Framework_model.py  
