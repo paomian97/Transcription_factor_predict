@@ -11,8 +11,8 @@ This project provides the core code for the transcription factor prediction proj
 ## Requirements
 * Python3
 * Tensorflow>=2.0
-* numpy==1.18.5
-* sklearn
+* numpy==1.18.5  
+
 
 ## Guidance
 ### Predicting Test Set  
